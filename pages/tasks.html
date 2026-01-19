@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tasks | My Study Life</title>
+    <link rel="stylesheet" href="../css/dashboard.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+</head>
+
+<body class="dash-body">
+    <nav>
+        <a href="../index.html" class="logo">
+            <i class="fa-solid fa-user-graduate"></i>
+            <span>My Study Life</span>
+        </a>
+        <ul class="nav_links">
+            <li><a href="dashboard.html">Dashboard</a></li>
+            <li><a href="students.html">Students</a></li>
+            <li><a href="aspirants.html">Aspirants</a></li>
+            <li><a href="materials.html">Materials</a></li>
+            <li><a href="quiz.html">Quiz</a></li>
+            <li><a href="logged_out.html" class="logout-btn">Logout</a></li>
+        </ul>
+    </nav>
+
+    <div class="dashboard-layout">
+        <aside class="dash-sidebar">
+            <ul class="side-menu">
+                <li><a href="dashboard.html"><i class="fa-solid fa-house"></i> Dashboard</a></li>
+                <li><a href="calendar.html"><i class="fa-solid fa-calendar-days"></i> Calendar</a></li>
+                <li class="has-dropdown open" id="activities-menu">
+                    <a href="javascript:void(0)" class="dropdown-trigger">
+                        <i class="fa-solid fa-clipboard-list"></i> Activities
+                        <i class="fa-solid fa-chevron-down arrow"></i>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li class="active"><a href="tasks.html"><i class="fa-solid fa-check-double"></i> Tasks</a></li>
+                        <li><a href="exams.html"><i class="fa-solid fa-file-lines"></i> Exams</a></li>
+                        <li><a href="classes.html"><i class="fa-solid fa-chalkboard-user"></i> Classes</a></li>
+                    </ul>
+                </li>
+                <li><a href="#"><i class="fa-solid fa-clock"></i> Focus Timer</a></li>
+            </ul>
+
+            <script>
+                document.querySelector('.dropdown-trigger').addEventListener('click', function () {
+                    const parent = this.parentElement;
+                    parent.classList.toggle('open');
+                });
+            </script>
+
+            <button class="add-btn" onclick="window.location.href='add_activity.html'"><i class="fa-solid fa-plus"></i>
+                Add New</button>
+
+            <div class="side-links">
+                <div class="link-row"><i class="fa-regular fa-circle-question"></i> Help Center</div>
+                <div class="link-row"><i class="fa-regular fa-calendar-check"></i> Calendar Sync</div>
+            </div>
+        </aside>
+
+        <main class="dash-content">
+            <div class="activity-card">
+                <div class="activity-header">
+                    <span>✅</span> Tasks
+                </div>
+
+                <div class="tab-container">
+                    <button class="tab-btn active">Current</button>
+                    <button class="tab-btn">Overdue</button>
+                    <button class="tab-btn">Past</button>
+                </div>
+
+                <div class="subject-select-container">
+                    <select class="subject-select">
+                        <option value="">Select Subject</option>
+                        <option value="">Tamil</option>
+                        <option value="">English</option>
+                        <option value="">Maths</option>
+                        <option value="">Environmental Science</option>
+                        <option value="">Science</option>
+                        <option value="">Social Science</option>
+                    </select>
+                </div>
+
+                <div class="empty-state">
+                    <a href="add_activity.html" class="add-link">Add Task</a>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <footer class="main-footer">
+        <div class="footer-container">
+            <div class="footer-column">
+                <h3>Quick Link</h3>
+                <ul>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms & Condition</a></li>
+                    <li><a href="faq.html">FAQs & Help</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column">
+                <h3>Contact</h3>
+                <div class="contact-info">
+                    <div><i class="fa-solid fa-location-dot"></i> 111/1,Kamarajar Street, Chennai</div>
+                    <div><i class="fa-solid fa-phone"></i> +91 9360649867</div>
+                    <div><i class="fa-solid fa-envelope"></i> help@mystudylife.com</div>
+                </div>
+                <div class="social-icons-footer">
+                    <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                    <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#"><i class="fa-brands fa-youtube"></i></a>
+                    <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-column">
+                <h3>Subscribe to our Newsletter</h3>
+                <div class="newsletter-box">
+                    <p>Subscribe now and join our growing community of learners committed to lifelong education!</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Your email" required>
+                        <button type="submit">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-container">
+            <div class="footer-bottom">
+                <button class="back-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+                    <i class="fa-solid fa-arrow-up"></i>
+                </button>
+                <div class="copyright">
+                    &copy; My Study Life, All Right Reserved.
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>

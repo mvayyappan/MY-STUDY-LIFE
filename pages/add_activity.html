@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Add Activity | My Study Life</title>
+    <link rel="stylesheet" href="../css/dashboard.css" />
+    <link rel="stylesheet" href="../css/add_activity.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+</head>
+
+<body class="dash-body">
+    <nav>
+        <a href="../index.html" class="logo">
+            <i class="fa-solid fa-user-graduate"></i>
+            <span>My Study Life</span>
+        </a>
+        <ul class="nav_links">
+            <li><a href="dashboard.html">Dashboard</a></li>
+            <li><a href="students.html">Students</a></li>
+            <li><a href="aspirants.html">Aspirants</a></li>
+            <li><a href="materials.html">Materials</a></li>
+            <li><a href="quiz.html">Quiz</a></li>
+            <li><a href="logged_out.html" class="logout-btn">Logout</a></li>
+        </ul>
+    </nav>
+
+    <div class="dashboard-layout">
+        <aside class="dash-sidebar">
+            <ul class="side-menu">
+                <li><a href="dashboard.html"><i class="fa-solid fa-house"></i> Dashboard</a></li>
+                <li><a href="calendar.html"><i class="fa-solid fa-calendar-days"></i> Calendar</a></li>
+                <li class="has-dropdown" id="activities-menu">
+                    <!-- Checkbox for Sidebar Dropdown Logic -->
+                    <input type="checkbox" id="sidebar-activities-toggle" class="radio-logic" checked>
+                    <label for="sidebar-activities-toggle" class="dropdown-trigger">
+                        <i class="fa-solid fa-clipboard-list"></i> Activities
+                        <i class="fa-solid fa-chevron-down arrow"></i>
+                    </label>
+                    <ul class="dropdown-menu">
+                        <li><a href="tasks.html"><i class="fa-solid fa-check-double"></i> Tasks</a></li>
+                        <li><a href="exams.html"><i class="fa-solid fa-file-lines"></i> Exams</a></li>
+                        <li><a href="classes.html"><i class="fa-solid fa-chalkboard-user"></i> Classes</a></li>
+                    </ul>
+                </li>
+                <li><a href="#"><i class="fa-solid fa-clock"></i> Focus Timer</a></li>
+            </ul>
+
+            <a href="add_activity.html" class="add-btn active"
+                style="text-decoration: none; display: flex; align-items: center; justify-content: center; width: 100%;"><i
+                    class="fa-solid fa-plus"></i> Add New</a>
+
+            <div class="side-links">
+                <div class="link-row"><i class="fa-regular fa-circle-question"></i> Help Center</div>
+                <div class="link-row"><i class="fa-regular fa-calendar-check"></i> Calendar Sync</div>
+            </div>
+        </aside>
+
+        <main class="dash-content">
+            <!-- Radio Hack Logic for Tabs -->
+            <input type="radio" name="main-tabs" id="tab-task" class="radio-logic" checked>
+            <input type="radio" name="main-tabs" id="tab-class" class="radio-logic">
+            <input type="radio" name="main-tabs" id="tab-exam" class="radio-logic">
+            <input type="radio" name="main-tabs" id="tab-vacation" class="radio-logic">
+            <input type="radio" name="main-tabs" id="tab-xtra" class="radio-logic">
+
+            <div class="add-activity-container">
+                <div class="tab-nav">
+                    <label for="tab-task" class="tab-nav-label">Task</label>
+                    <label for="tab-class" class="tab-nav-label">Class</label>
+                    <label for="tab-exam" class="tab-nav-label">Exam</label>
+                    <label for="tab-vacation" class="tab-nav-label">Vacation</label>
+                    <label for="tab-xtra" class="tab-nav-label">Xtra <i class="fa-solid fa-crown"></i></label>
+                </div>
+
+                <!-- Task Tab -->
+                <div id="task-content" class="tab-content">
+                    <!-- Segmented Radio Logic -->
+                    <input type="radio" name="task-occurs" id="occurs-once" class="radio-logic" checked>
+                    <input type="radio" name="task-occurs" id="occurs-repeating" class="radio-logic">
+
+                    <div class="form-grid">
+                        <div class="form-group full-width">
+                            <label>Title *</label>
+                            <input type="text" placeholder="task title">
+                        </div>
+                        <div class="form-group full-width">
+                            <label>Details</label>
+                            <textarea placeholder="Task description" rows="3"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>Subject *</label>
+                            <select>
+                                <option value="">Select Subject</option>
+                                <option value="">Tamil</option>
+                                <option value="">English</option>
+                                <option value="">Maths</option>
+                                <option value="">Environmental Science</option>
+                                <option value="">Science</option>
+                                <option value="">Social Science</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Type (Optional)</label>
+                            <select>
+                                <option>Task type</option>
+                            </select>
+                        </div>
+                        <div class="form-group full-width">
+                            <label>Occurs</label>
+                            <div class="segmented-control">
+                                <label for="occurs-once" class="segment-label">Once</label>
+                                <label for="occurs-repeating" class="segment-label">Repeating <i
+                                        class="fa-solid fa-crown"></i></label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Due Date</label>
+                            <input type="date" placeholder="Select Date">
+                        </div>
+                        <div class="form-group">
+                            <label>Time</label>
+                            <input type="time" placeholder="Select Time">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Class Tab -->
+                <div id="class-content" class="tab-content">
+                    <!-- Segmented Radio Logic -->
+                    <input type="radio" name="class-mode" id="mode-in-person" class="radio-logic" checked>
+                    <input type="radio" name="class-mode" id="mode-online" class="radio-logic">
+
+                    <input type="radio" name="class-dates" id="dates-none" class="radio-logic" checked>
+                    <input type="radio" name="class-dates" id="dates-academic" class="radio-logic">
+                    <input type="radio" name="class-dates" id="dates-manual" class="radio-logic">
+
+                    <input type="radio" name="class-occurs" id="occurs-once-class" class="radio-logic" checked>
+                    <input type="radio" name="class-occurs" id="occurs-repeating-class" class="radio-logic">
+
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label>Subject *</label>
+                            <select>
+                                <option value="">Select Subject</option>
+                                <option value="">Tamil</option>
+                                <option value="">English</option>
+                                <option value="">Maths</option>
+                                <option value="">Environmental Science</option>
+                                <option value="">Science</option>
+                                <option value="">Social Science</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Class</label>
+                            <input type="text" placeholder="Class name">
+                        </div>
+                        <div class="form-group full-width">
+                            <label>Mode</label>
+                            <div class="segmented-control">
+                                <label for="mode-in-person" class="segment-label">In Person</label>
+                                <label for="mode-online" class="segment-label">Online</label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Teacher</label>
+                            <input type="text" placeholder="Teacher name">
+                        </div>
+                        <div class="form-group">
+                            <label>Room</label>
+                            <input type="text" placeholder="Room">
+                        </div>
+                        <div class="form-group">
+                            <label>Building</label>
+                            <input type="text" placeholder="Building">
+                        </div>
+                        <div class="form-group full-width">
+                            <label>Start/End Dates</label>
+                            <div class="segmented-control">
+                                <label for="dates-none" class="segment-label">None</label>
+                                <label for="dates-academic" class="segment-label">Academic year/term</label>
+                                <label for="dates-manual" class="segment-label">Manual</label>
+                            </div>
+                        </div>
+                        <div class="form-group full-width">
+                            <label>Occurs</label>
+                            <div class="segmented-control">
+                                <label for="occurs-once-class" class="segment-label">Once</label>
+                                <label for="occurs-repeating-class" class="segment-label">Repeating</label>
+                            </div>
+                        </div>
+                        <div class="form-group full-width">
+                            <label>Date</label>
+                            <input type="date" placeholder="Select Date">
+                        </div>
+                        <div class="form-group">
+                            <label>Start Time *</label>
+                            <input type="time" placeholder="Select Time">
+                        </div>
+                        <div class="form-group">
+                            <label>End Time *</label>
+                            <input type="time" placeholder="Select Time">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Exam Tab -->
+                <div id="exam-content" class="tab-content">
+                    <!-- Segmented Radio Logic -->
+                    <input type="radio" name="exam-type" id="type-exam" class="radio-logic" checked>
+                    <input type="radio" name="exam-type" id="type-quiz" class="radio-logic">
+                    <input type="radio" name="exam-type" id="type-test" class="radio-logic">
+
+                    <input type="radio" name="exam-mode" id="mode-in-person-exam" class="radio-logic" checked>
+                    <input type="radio" name="exam-mode" id="mode-online-exam" class="radio-logic">
+
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label>Exam *</label>
+                            <input type="text" placeholder="Exam name">
+                        </div>
+                        <div class="form-group">
+                            <label>Subject *</label>
+                            <select>
+                                <option value="">Select Subject</option>
+                                <option value="">Tamil</option>
+                                <option value="">English</option>
+                                <option value="">Maths</option>
+                                <option value="">Environmental Science</option>
+                                <option value="">Science</option>
+                                <option value="">Social Science</option>
+                            </select>
+                        </div>
+                        <div class="form-group full-width">
+                            <label>Type</label>
+                            <div class="segmented-control">
+                                <label for="type-exam" class="segment-label">Exam</label>
+                                <label for="type-quiz" class="segment-label">Quiz <i
+                                        class="fa-solid fa-crown"></i></label>
+                                <label for="type-test" class="segment-label">Test <i
+                                        class="fa-solid fa-crown"></i></label>
+                            </div>
+                        </div>
+                        <div class="form-group full-width">
+                            <label>Mode</label>
+                            <div class="segmented-control">
+                                <label for="mode-in-person-exam" class="segment-label">In Person</label>
+                                <label for="mode-online-exam" class="segment-label">Online</label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Seat</label>
+                            <input type="text" placeholder="Seat #">
+                        </div>
+                        <div class="form-group">
+                            <label>Room</label>
+                            <input type="text" placeholder="room">
+                        </div>
+                        <div class="form-group">
+                            <label>Date *</label>
+                            <input type="date" placeholder="Select Date">
+                        </div>
+                        <div class="form-group">
+                            <label>Time *</label>
+                            <input type="time" placeholder="Select Time">
+                        </div>
+                        <div class="form-group full-width">
+                            <label>Duration (In minutes)</label>
+                            <input type="number" placeholder="Duration (In minutes)">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Vacation Tab -->
+                <div id="vacation-content" class="tab-content">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label>Name *</label>
+                            <input type="text" placeholder="Vacations name">
+                        </div>
+                        <div class="form-group">
+                            <label>Details</label>
+                            <input type="text" placeholder="Vacations description">
+                        </div>
+                        <div class="form-group">
+                            <label>Start Date *</label>
+                            <input type="date" placeholder="Select Date">
+                        </div>
+                        <div class="form-group">
+                            <label>End Date *</label>
+                            <input type="date" placeholder="Select Date">
+                        </div>
+                        <div class="form-group full-width">
+                            <label>Photo <i class="fa-solid fa-crown" style="color: #ff9f43;"></i></label>
+                            <div class="photo-upload">
+                                <div class="photo-upload-content">
+                                    <i class="fa-regular fa-image"></i>
+                                    <p>Personalize with a photo of your choice</p>
+                                    <span class="subtext">Max. File Size: 5MB</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <button class="save-btn">Save (4 free tasks remaining)</button>
+                    <a href="dashboard.html" class="cancel-btn">Cancel</a>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Final touches to Dash Sidebar logic (Pure CSS) -->
+    <style>
+        /* Sidebar Dropdown logic without JS */
+        #sidebar-activities-toggle:checked~.dropdown-menu {
+            max-height: 200px;
+            opacity: 1;
+            visibility: visible;
+            display: block;
+        }
+
+        #sidebar-activities-toggle:checked~.dropdown-trigger .arrow {
+            transform: rotate(180deg);
+        }
+
+        #sidebar-activities-toggle:not(:checked)~.dropdown-menu {
+            display: none;
+        }
+
+        /* Ensure label takes full width for clicking */
+        .dropdown-trigger {
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            width: 100%;
+        }
+
+        .dropdown-trigger .arrow {
+            margin-left: auto;
+        }
+    </style>
+
+    <footer class="main-footer">
+        <div class="footer-container">
+            <div class="footer-column">
+                <h3>Quick Link</h3>
+                <ul>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms & Condition</a></li>
+                    <li><a href="faq.html">FAQs & Help</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column">
+                <h3>Contact</h3>
+                <div class="contact-info">
+                    <div><i class="fa-solid fa-location-dot"></i> 111/1,Kamarajar Street, Chennai</div>
+                    <div><i class="fa-solid fa-phone"></i> +91 9360649867</div>
+                    <div><i class="fa-solid fa-envelope"></i> help@mystudylife.com</div>
+                </div>
+                <div class="social-icons-footer">
+                    <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                    <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#"><i class="fa-brands fa-youtube"></i></a>
+                    <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-column">
+                <h3>Subscribe to our Newsletter</h3>
+                <div class="newsletter-box">
+                    <p>Subscribe now and join our growing community of learners committed to lifelong education!</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Your email" required>
+                        <button type="submit">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-container">
+            <div class="footer-bottom">
+                <a href="#" class="back-to-top"
+                    style="display: flex; align-items: center; justify-content: center; text-decoration: none;">
+                    <i class="fa-solid fa-arrow-up"></i>
+                </a>
+                <div class="copyright">
+                    &copy; My Study Life, All Right Reserved.
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>
