@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Focus Timer - MyStudyLife</title>
+    <link rel="stylesheet" href="../css/dashboard.css">
+    <link rel="stylesheet" href="../css/focus_timer.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+</head>
+
+<body class="dash-body">
+    <nav>
+        <a href="dashboard.html" class="logo">
+            <i class="fa-solid fa-user-graduate"></i>
+            <span>My Study Life</span>
+        </a>
+        <ul class="nav_links">
+            <li><a href="dashboard.html">Dashboard</a></li>
+            <li><a href="students.html">Students</a></li>
+            <li><a href="aspirants.html">Aspirants</a></li>
+            <li><a href="materials.html">Materials</a></li>
+            <li><a href="quiz.html">Quiz</a></li>
+            <li><a href="logged_out.html" class="logout-btn">Logout</a></li>
+        </ul>
+    </nav>
+
+    <div class="dashboard-layout">
+        <aside class="dash-sidebar">
+            <ul class="side-menu">
+                <li><a href="dashboard.html"><i class="fa-solid fa-house"></i> Dashboard</a></li>
+                <li><a href="calendar.html"><i class="fa-solid fa-calendar-days"></i> Calendar</a></li>
+                <li class="has-dropdown" id="activities-menu">
+                    <a href="javascript:void(0)" class="dropdown-trigger">
+                        <i class="fa-solid fa-clipboard-list"></i> Activities
+                        <i class="fa-solid fa-chevron-down arrow"></i>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="tasks.html"><i class="fa-solid fa-check-double"></i> Tasks</a></li>
+                        <li><a href="exams.html"><i class="fa-solid fa-file-lines"></i> Exams</a></li>
+                        <li><a href="classes.html"><i class="fa-solid fa-chalkboard-user"></i> Classes</a></li>
+                    </ul>
+                </li>
+                <li class="active"><a href="focus_timer.html"><i class="fa-solid fa-clock"></i> Focus Timer</a></li>
+            </ul>
+
+            <script>
+                document.querySelector('.dropdown-trigger').addEventListener('click', function () {
+                    const parent = this.parentElement;
+                    parent.classList.toggle('open');
+                });
+            </script>
+
+            <button class="add-btn" onclick="window.location.href='add_activity.html'"><i class="fa-solid fa-plus"></i>
+                Add
+                New</button>
+
+            <div class="side-links">
+                <div class="link-row">
+                    <i class="fa-solid fa-circle-question"></i>
+                    <span>Support</span>
+                </div>
+                <div class="link-row">
+                    <i class="fa-solid fa-gear"></i>
+                    <span>Settings</span>
+                </div>
+            </div>
+        </aside>
+
+        <main class="dash-content">
+            <header class="content-header">
+                <h1>Focus Timer</h1>
+                <p>Stay focused and boost your productivity</p>
+            </header>
+
+            <section class="timer-section">
+
+                <div id="setup-screen" class="timer-container-card">
+                    <div class="setup-header">
+                        <i class="fa-solid fa-clock-rotate-left setup-icon"></i>
+                        <h2>Configure Your Session</h2>
+                        <p>Set your target to stay on track</p>
+                    </div>
+
+                    <form id="timer-setup-form" class="setup-form">
+                        <div class="input-group">
+                            <label for="setup-title">Session Name</label>
+                            <input type="text" id="setup-title" placeholder="e.g., Deep Work, Exam Prep..." required>
+                        </div>
+
+                        <div class="input-row">
+                            <div class="input-group">
+                                <label for="setup-date">Target Date</label>
+                                <input type="date" id="setup-date" required>
+                            </div>
+                            <div class="input-group">
+                                <label for="setup-time">Target Time</label>
+                                <input type="time" id="setup-time" required>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="start-btn">
+                            <i class="fa-solid fa-play"></i> Start Focusing
+                        </button>
+                    </form>
+                </div>
+
+
+                <div id="timer-display-screen" class="timer-container-card hidden">
+                    <div class="timer-active-header">
+                        <div class="active-title-info">
+                            <span class="label">Current Session</span>
+                            <h2 id="display-title">Focus Session</h2>
+                        </div>
+                        <div class="active-clock-info">
+                            <span class="label">Current Time</span>
+                            <div id="live-clock" class="live-clock-small">00:00:00</div>
+                        </div>
+                    </div>
+
+
+                    <div id="timer-widget-container" class="timer-widget-wrapper">
+
+                    </div>
+
+                    <div class="timer-footer">
+                        <div class="target-info">
+                            <i class="fa-solid fa-flag-checkered"></i>
+                            Target: <span id="display-target">...</span>
+                        </div>
+                        <div class="timer-controls">
+                            <button id="reset-timer" class="reset-btn">
+                                <i class="fa-solid fa-arrow-rotate-left"></i> Setup New
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <script>
+                const setupScreen = document.getElementById('setup-screen');
+                const displayScreen = document.getElementById('timer-display-screen');
+                const setupForm = document.getElementById('timer-setup-form');
+                const resetBtn = document.getElementById('reset-timer');
+                const widgetContainer = document.getElementById('timer-widget-container');
+
+
+                const today = new Date().toISOString().split('T')[0];
+                document.getElementById('setup-date').value = today;
+
+                function updateLiveClock() {
+                    const now = new Date();
+                    const hours = String(now.getHours()).padStart(2, '0');
+                    const minutes = String(now.getMinutes()).padStart(2, '0');
+                    const seconds = String(now.getSeconds()).padStart(2, '0');
+                    const ampm = hours >= 12 ? 'PM' : 'AM';
+                    const displayHours = hours % 12 || 12;
+
+                    const clockElem = document.getElementById('live-clock');
+                    if (clockElem) clockElem.textContent = `${displayHours}:${minutes}:${seconds} ${ampm}`;
+                }
+
+                setInterval(updateLiveClock, 1000);
+                updateLiveClock();
+
+                setupForm.addEventListener('submit', (e) => {
+                    e.preventDefault();
+
+                    const title = document.getElementById('setup-title').value;
+                    const date = document.getElementById('setup-date').value;
+                    const time = document.getElementById('setup-time').value;
+
+                    const targetDate = new Date(`${date}T${time}`);
+                    if (targetDate <= new Date()) {
+                        alert("Please select a future date and time!");
+                        return;
+                    }
+
+                    startWidgetTimer(title, date, time, targetDate);
+                });
+
+                resetBtn.addEventListener('click', () => {
+                    widgetContainer.innerHTML = ''; // Clear widget
+                    displayScreen.classList.add('hidden');
+                    setupScreen.classList.remove('hidden');
+                });
+
+                function startWidgetTimer(title, date, time, targetDate) {
+                    // Update display labels
+                    document.getElementById('display-title').textContent = title;
+                    document.getElementById('display-target').textContent = targetDate.toLocaleString([], {
+                        year: 'numeric', month: 'short', day: 'numeric',
+                        hour: '2-digit', minute: '2-digit'
+                    });
+
+                    // Clear previous widget if any
+                    widgetContainer.innerHTML = '';
+
+                    // Create the Logwork link
+                    const widgetLink = document.createElement('a');
+                    widgetLink.href = "https://logwork.com/countdown-timer";
+                    widgetLink.className = "countdown-timer";
+                    widgetLink.setAttribute('data-style', 'flip2');
+                    widgetLink.setAttribute('data-timezone', 'Asia/Kolkata');
+                    widgetLink.setAttribute('data-textcolor', '#52aeff');
+                    widgetLink.setAttribute('data-date', `${date} ${time}`);
+                    widgetLink.setAttribute('data-background', '#000000');
+                    widgetLink.setAttribute('data-digitscolor', '#ffffff');
+                    widgetLink.setAttribute('data-unitscolor', '#6bdcff');
+                    widgetLink.textContent = "Countdown Timer";
+
+                    widgetContainer.appendChild(widgetLink);
+
+                    // Load the script
+                    const script = document.createElement('script');
+                    script.src = "https://cdn.logwork.com/widget/countdown.js";
+                    widgetContainer.appendChild(script);
+
+                    // Switch screens
+                    setupScreen.classList.add('hidden');
+                    displayScreen.classList.remove('hidden');
+                }
+            </script>
+        </main>
+    </div>
+
+    <footer class="main-footer">
+        <div class="footer-container">
+            <div class="footer-column">
+                <h3>Quick Link</h3>
+                <ul>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms & Condition</a></li>
+                    <li><a href="faq.html">FAQs & Help</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column">
+                <h3>Contact</h3>
+                <div class="contact-info">
+                    <div><i class="fa-solid fa-location-dot"></i> 111/1,Kamarajar Street, Chennai</div>
+                    <div><i class="fa-solid fa-phone"></i> +91 9360649867</div>
+                    <div><i class="fa-solid fa-envelope"></i> help@mystudylife.com</div>
+                </div>
+                <div class="social-icons-footer">
+                    <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                    <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#"><i class="fa-brands fa-youtube"></i></a>
+                    <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-column">
+                <h3>Subscribe to our Newsletter</h3>
+                <div class="newsletter-box">
+                    <p>Subscribe now and join our growing community of learners committed to lifelong education!</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Your email" required>
+                        <button type="submit">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-container">
+            <div class="footer-bottom">
+                <button class="back-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+                    <i class="fa-solid fa-arrow-up"></i>
+                </button>
+                <div class="copyright">
+                    &copy; My Study Life, All Right Reserved.
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>
