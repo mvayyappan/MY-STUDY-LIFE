@@ -1,31 +1,137 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Notes</title>
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>Notes - My Study Life</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Inter:wght@400;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/notes.css">
 </head>
-<body>
+
 <body class="dash-body">
-  <nav>
-    <a href="dashboard.html" class="logo">
-      <i class="fa-solid fa-user-graduate"></i>
-      <span>My Study Life</span>
-    </a>
-    <ul class="nav_links">
-      <li><a href="dashboard.html">Dashboard</a></li>
-      <li><a href="students.html">Students</a></li>
-      <li><a href="aspirants.html">Aspirants</a></li>
-      <li><a href="materials.html">Materials</a></li>
-      <li><a href="quiz.html">Quiz</a></li>
-      <li><a href="notes.html">Notes</a></li>
-      <li><a href="logged_out.html" class="logout-btn">Logout</a></li>
-    </ul>
-  </nav>
-    
-  
-    
+    <!-- Navigation (Site Template) -->
+    <nav class="qb-nav">
+        <a href="dashboard.html" class="logo">
+            <i class="fa-solid fa-user-graduate"></i>
+            <span>My Study Life</span>
+        </a>
+        <ul class="nav_links">
+            <li><a href="dashboard.html">Dashboard</a></li>
+            <li><a href="students.html">Students</a></li>
+            <li><a href="aspirants.html">Aspirants</a></li>
+            <li><a href="materials.html">Materials</a></li>
+            <li><a href="quiz.html">Quiz</a></li>
+            <li><a href="notes.html" class="active">Notes</a></li>
+            <li><a href="logged_out.html" class="logout-btn">Logout</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <!-- Hero Section (Image Template Style) -->
+        <section class="hero-section">
+            <div class="container hero-container">
+                <div class="hero-left">
+                    <h1>Store your thoughts .<br>anytime . anywere</h1>
+
+                    <div class="hero-actions">
+                        <button class="btn-orange" onclick="window.location.href='my_notes.html'">start taking
+                            notes</button>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Advantages Section -->
+        <section id="advantages" class="advantages-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Notes Advantages</h2>
+                    <div class="title-underline"></div>
+                </div>
+                <div class="advantages-grid">
+                    <div class="adv-card">
+                        <div class="adv-icon"><i class="fa-solid fa-lock"></i></div>
+                        <h3>Encrypt</h3>
+                        <p>End-to-end encryption for all your personal thoughts and study plans.</p>
+                    </div>
+                    <div class="adv-card">
+                        <div class="adv-icon"><i class="fa-solid fa-brain"></i></div>
+                        <h3>Smart</h3>
+                        <p>Intelligent tagging and search to find any note in seconds.</p>
+                    </div>
+                    <div class="adv-card">
+                        <div class="adv-icon"><i class="fa-solid fa-shield-halved"></i></div>
+                        <h3>Powerful Security</h3>
+                        <p>Robust protection ensuring your data is always safe and sound.</p>
+                    </div>
+                    <div class="adv-card">
+                        <div class="adv-icon"><i class="fa-solid fa-user-secret"></i></div>
+                        <h3>Privacy</h3>
+                        <p>We believe in total privacy. Your data belongs only to you.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer (Site Template) -->
+    <footer class="main-footer">
+        <div class="footer-container">
+            <div class="footer-column">
+                <h3>Quick Link</h3>
+                <ul>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms & Condition</a></li>
+                    <li><a href="faq.html">FAQs & Help</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column">
+                <h3>Contact</h3>
+                <div class="contact-info">
+                    <div><i class="fa-solid fa-location-dot"></i> 111/1,Kamarajar Street, Chennai</div>
+                    <div><i class="fa-solid fa-phone"></i> +91 9360649867</div>
+                    <div><i class="fa-solid fa-envelope"></i> help@mystudylife.com</div>
+                </div>
+                <div class="social-icons-footer">
+                    <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                    <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#"><i class="fa-brands fa-youtube"></i></a>
+                    <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-column">
+                <h3>Subscribe to our Newsletter</h3>
+                <div class="newsletter-box">
+                    <p>Subscribe now and join our growing community of learners committed to lifelong education!</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Your email" required>
+                        <button type="submit">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-container">
+            <div class="footer-bottom">
+                <button class="back-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+                    <i class="fa-solid fa-arrow-up"></i>
+                </button>
+                <div class="copyright">
+                    &copy; My Study Life, All Right Reserved.
+                </div>
+            </div>
+        </div>
+    </footer>
 </body>
+
 </html>
